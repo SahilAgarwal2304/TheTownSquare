@@ -268,7 +268,7 @@ Since this is plain HTML/CSS/JS, you can host it for free on:
 
 ## 👨‍💻 Project Info
 
-**Project Name:** SocietyOS — Housing Society Management System  
+**Project Name:**TheTownSquare — Housing Society Management System  
 **Type:** DSBDA Mini Project  
 **Frontend:** Plain HTML / CSS / JS (no frameworks)  
 **Pages:** 8  
