@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TheTownSquare — Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+  <main class="main">
+    <div class="page-content">
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">Good morning, Arjun 👋</h1>
+            <p class="page-sub">Sunrise Heights Society · Pune, Maharashtra</p>
+          </div>
+          <span class="role-pill">Co-Leader</span>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-label">Total Residents</div><div class="stat-val blue">248</div><div class="stat-trend">↑ 4 new this month</div></div>
+        <div class="stat-card"><div class="stat-label">Pending Bills</div><div class="stat-val amber">37</div><div class="stat-trend">₹1.4L outstanding</div></div>
+        <div class="stat-card"><div class="stat-label">Open Complaints</div><div class="stat-val red">12</div><div class="stat-trend">3 high priority</div></div>
+        <div class="stat-card"><div class="stat-label">Monthly Revenue</div><div class="stat-val green">₹3.2L</div><div class="stat-trend">↑ 8% vs last month</div></div>
+      </div>
+
+      <!-- Two Column -->
+      <div class="grid2">
+        <!-- Collection chart -->
+        <div class="card">
+          <div class="card-title">Collection by Bill Type</div>
+          <div class="mini-bar-wrap">
+            <div class="mini-bar-row">
+              <span class="mini-bar-label">Maintenance</span>
+              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:82%;background:var(--accent)"></div></div>
+              <span class="mini-bar-val">82%</span>
+            </div>
+            <div class="mini-bar-row">
+              <span class="mini-bar-label">Water</span>
+              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:67%;background:var(--success)"></div></div>
+              <span class="mini-bar-val">67%</span>
+            </div>
+            <div class="mini-bar-row">
+              <span class="mini-bar-label">Gas Pipeline</span>
+              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:91%;background:var(--warn)"></div></div>
+              <span class="mini-bar-val">91%</span>
+            </div>
+            <div class="mini-bar-row">
+              <span class="mini-bar-label">Parking</span>
+              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:55%;background:var(--danger)"></div></div>
+              <span class="mini-bar-val">55%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity -->
+        <div class="card">
+          <div class="card-title">Recent Activity</div>
+          <div class="activity-item"><div class="activity-icon ai-green">💳</div><div><div class="activity-text">Flat 402 paid maintenance bill ₹3,200</div><div class="activity-time">10 min ago</div></div></div>
+          <div class="activity-item"><div class="activity-icon ai-red">⚑</div><div><div class="activity-text">New complaint: Lift not working — Block B</div><div class="activity-time">35 min ago</div></div></div>
+          <div class="activity-item"><div class="activity-icon ai-blue">🚪</div><div><div class="activity-text">Visitor Ramesh Kumar approved for Flat 201</div><div class="activity-time">1 hr ago</div></div></div>
+          <div class="activity-item"><div class="activity-icon ai-amber">📢</div><div><div class="activity-text">Notice posted: Annual AGM on 20th April</div><div class="activity-time">2 hrs ago</div></div></div>
+        </div>
+      </div>
+
+      <!-- Upcoming Bills Table -->
+      <div class="table-wrap">
+        <div class="table-head">
+          <span class="table-title">Upcoming Due Bills</span>
+          <a href="bills.html" class="btn btn-primary btn-sm">View All</a>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Flat</th><th>Type</th><th>Amount</th><th>Due Date</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><strong>A-101</strong></td><td>Maintenance</td><td>₹3,200</td><td>15 Apr</td><td><span class="badge b-amber">Pending</span></td></tr>
+              <tr><td><strong>B-205</strong></td><td>Water</td><td>₹850</td><td>15 Apr</td><td><span class="badge b-amber">Pending</span></td></tr>
+              <tr><td><strong>C-308</strong></td><td>Gas Pipeline</td><td>₹1,200</td><td>10 Apr</td><td><span class="badge b-red">Overdue</span></td></tr>
+              <tr><td><strong>A-204</strong></td><td>Maintenance</td><td>₹3,200</td><td>15 Apr</td><td><span class="badge b-green">Paid</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="layout.js"></script>
+<script src="script.js"></script>
+<script>injectLayout('dashboard.html');</script>
+</body>
+</html>

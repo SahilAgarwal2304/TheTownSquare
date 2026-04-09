@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TheTownSquare — Admin Panel</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+  <main class="main">
+    <div class="page-content">
+
+      <div class="page-header">
+        <h1 class="page-title">Admin Panel</h1>
+        <p class="page-sub">Society configuration and management</p>
+      </div>
+
+      <div class="grid2">
+
+        <!-- Add Resident -->
+        <div class="card">
+          <div class="card-title">Add Resident</div>
+          <div class="form-row"><label class="form-label">Full Name</label><input class="form-input" type="text" placeholder="Enter full name" /></div>
+          <div class="form-row"><label class="form-label">Email Address</label><input class="form-input" type="email" placeholder="resident@email.com" /></div>
+          <div class="form-grid">
+            <div class="form-row"><label class="form-label">Flat Number</label><input class="form-input" type="text" placeholder="A-101" /></div>
+            <div class="form-row"><label class="form-label">Phone</label><input class="form-input" type="tel" placeholder="+91 XXXXXXXXXX" /></div>
+          </div>
+          <div class="form-row"><label class="form-label">Assign Role</label>
+            <select class="form-input">
+              <option>Resident</option>
+              <option>Elder (Committee)</option>
+              <option>Co-Leader</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="showToast('Resident added successfully!')">Add Resident</button>
+        </div>
+
+        <!-- Society Settings -->
+        <div class="card">
+          <div class="card-title">Society Settings</div>
+          <div class="form-row"><label class="form-label">Society Name</label><input class="form-input" type="text" value="Sunrise Heights" /></div>
+          <div class="form-row"><label class="form-label">City</label><input class="form-input" type="text" value="Pune" /></div>
+          <div class="form-row"><label class="form-label">Maintenance Amount (per flat ₹)</label><input class="form-input" type="number" value="3200" /></div>
+          <div class="form-grid">
+            <div class="form-row"><label class="form-label">Bill Due Day</label><input class="form-input" type="number" value="15" min="1" max="28" /></div>
+            <div class="form-row"><label class="form-label">Late Fee (%)</label><input class="form-input" type="number" value="2" /></div>
+          </div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="saveSettings()">Save Settings</button>
+        </div>
+      </div>
+
+      <!-- Role Management -->
+      <div class="table-wrap">
+        <div class="table-head">
+          <span class="table-title">Role Management</span>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Resident</th><th>Flat</th><th>Current Role</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>Priya Sharma</td><td>A-101</td><td><span class="badge b-gray">Resident</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Role updated!')">Change Role</button></td></tr>
+              <tr><td>Rajesh Verma</td><td>B-301</td><td><span class="badge b-blue">Elder</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Role updated!')">Change Role</button></td></tr>
+              <tr><td>Sunita Patel</td><td>C-202</td><td><span class="badge b-gray">Resident</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Role updated!')">Change Role</button></td></tr>
+              <tr><td>Kiran Kumar</td><td>B-205</td><td><span class="badge b-gray">Resident</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Role updated!')">Change Role</button></td></tr>
+              <tr><td>Deepa Nair</td><td>C-401</td><td><span class="badge b-blue">Elder</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Role updated!')">Change Role</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="grid2">
+        <div class="card">
+          <div class="card-title">Generate Monthly Bills</div>
+          <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.6">Auto-generate maintenance bills for all occupied flats for the selected month.</p>
+          <div class="form-row"><label class="form-label">Select Month</label><input class="form-input" type="month" /></div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="showToast('Bills generated for all flats!')">Generate Bills</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Send Bulk Reminder</div>
+          <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.6">Send payment reminder to all residents with pending or overdue bills.</p>
+          <div class="form-row"><label class="form-label">Message</label><textarea class="form-input" rows="3" placeholder="Your bill is due. Please pay at the earliest."></textarea></div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="showToast('Reminders sent to 37 residents!', 'amber')">Send Reminders</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="layout.js"></script>
+<script src="script.js"></script>
+<script>injectLayout('admin.html');</script>
+</body>
+</html>

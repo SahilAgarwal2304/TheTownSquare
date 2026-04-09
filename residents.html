@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TheTownSquare — Residents</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+  <main class="main">
+    <div class="page-content">
+
+      <div class="page-header">
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">Residents</h1>
+            <p class="page-sub">All flats and residents in the society</p>
+          </div>
+          <a href="admin.html" class="btn btn-primary">+ Add Resident</a>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-label">Total Flats</div><div class="stat-val">120</div></div>
+        <div class="stat-card"><div class="stat-label">Occupied</div><div class="stat-val green">108</div></div>
+        <div class="stat-card"><div class="stat-label">Vacant</div><div class="stat-val amber">12</div></div>
+        <div class="stat-card"><div class="stat-label">Total Residents</div><div class="stat-val blue">248</div></div>
+      </div>
+
+      <div class="table-wrap">
+        <div class="table-head">
+          <span class="table-title">Resident Directory</span>
+          <input
+            class="form-input"
+            type="text"
+            id="residentSearch"
+            placeholder="Search by name or flat..."
+            oninput="searchResidents()"
+            style="width:220px;height:34px;padding:4px 10px;font-size:12px"
+          />
+        </div>
+        <div class="table-scroll">
+          <table id="residentsTable">
+            <thead>
+              <tr><th>Flat</th><th>Name</th><th class="hide-mobile">Phone</th><th>Role</th><th>Bills</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>A-101</strong></td><td>Priya Sharma</td><td class="hide-mobile">+91 98765 43210</td><td><span class="badge b-gray">Resident</span></td><td><span class="badge b-amber">Pending</span></td><td><button class="btn btn-outline btn-sm">View</button></td></tr>
+              <tr><td><strong>A-102</strong></td><td>Rohan Mehta</td><td class="hide-mobile">+91 98765 43211</td><td><span class="badge b-gray">Resident</span></td><td><span class="badge b-green">Paid</span></td><td><button class="btn btn-outline btn-sm">View</button></td></tr>
+              <tr><td><strong>B-201</strong></td><td>Sunita Patel</td><td class="hide-mobile">+91 98765 43212</td><td><span class="badge b-blue">Elder</span></td><td><span class="badge b-green">Paid</span></td><td><button class="btn btn-outline btn-sm">View</button></td></tr>
+              <tr><td><strong>B-205</strong></td><td>Kiran Kumar</td><td class="hide-mobile">+91 98765 43213</td><td><span class="badge b-gray">Resident</span></td><td><span class="badge b-red">Overdue</span></td><td><button class="btn btn-outline btn-sm">View</button></td></tr>
+              <tr><td><strong>B-301</strong></td><td>Rajesh Verma</td><td class="hide-mobile">+91 98765 43215</td><td><span class="badge b-blue">Elder</span></td><td><span class="badge b-green">Paid</span></td><td><button class="btn btn-outline btn-sm">View</button></td></tr>
+              <tr><td><strong>C-102</strong></td><td>Meena Desai</td><td class="hide-mobile">+91 98765 43216</td><td><span class="badge b-gray">Resident</span></td><td><span class="badge b-green">Paid</span></td><td><button class="btn btn-outline btn-sm">View</button></td></tr>
+              <tr><td><strong>C-308</strong></td><td>Amit Joshi</td><td class="hide-mobile">+91 98765 43214</td><td><span class="badge b-gray">Resident</span></td><td><span class="badge b-amber">Pending</span></td><td><button class="btn btn-outline btn-sm">View</button></td></tr>
+              <tr><td><strong>C-401</strong></td><td>Deepa Nair</td><td class="hide-mobile">+91 98765 43217</td><td><span class="badge b-blue">Elder</span></td><td><span class="badge b-green">Paid</span></td><td><button class="btn btn-outline btn-sm">View</button></td></tr>
+              <tr><td><strong>D-302</strong></td><td>Suresh Rao</td><td class="hide-mobile">+91 98765 43218</td><td><span class="badge b-gray">Resident</span></td><td><span class="badge b-amber">Pending</span></td><td><button class="btn btn-outline btn-sm">View</button></td></tr>
+              <tr><td><strong>D-501</strong></td><td>Anjali Menon</td><td class="hide-mobile">+91 98765 43219</td><td><span class="badge b-gray">Resident</span></td><td><span class="badge b-green">Paid</span></td><td><button class="btn btn-outline btn-sm">View</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="layout.js"></script>
+<script src="script.js"></script>
+<script>injectLayout('residents.html');</script>
+</body>
+</html>

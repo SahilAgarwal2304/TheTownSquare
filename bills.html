@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TheTownSquare — Bills & Payments</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+  <main class="main">
+    <div class="page-content">
+
+      <div class="page-header">
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">Bills & Payments</h1>
+            <p class="page-sub">Manage and track all society billing</p>
+          </div>
+          <button class="btn btn-primary" onclick="openModal('addBillModal')">+ Create Bill</button>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-label">Total Bills</div><div class="stat-val">184</div></div>
+        <div class="stat-card"><div class="stat-label">Paid</div><div class="stat-val green">147</div></div>
+        <div class="stat-card"><div class="stat-label">Pending</div><div class="stat-val amber">29</div></div>
+        <div class="stat-card"><div class="stat-label">Overdue</div><div class="stat-val red">8</div></div>
+      </div>
+
+      <div class="filters">
+        <select class="filter-select" id="billTypeFilter" onchange="filterBills()">
+          <option value="all">All Types</option>
+          <option value="maintenance">Maintenance</option>
+          <option value="water">Water</option>
+          <option value="gas_pipeline">Gas Pipeline</option>
+          <option value="parking">Parking</option>
+        </select>
+        <select class="filter-select" id="billStatusFilter" onchange="filterBills()">
+          <option value="all">All Status</option>
+          <option value="paid">Paid</option>
+          <option value="pending">Pending</option>
+          <option value="overdue">Overdue</option>
+        </select>
+      </div>
+
+      <div class="table-wrap">
+        <div class="table-scroll">
+          <table id="billsTable">
+            <thead>
+              <tr><th>Flat No.</th><th>Resident</th><th>Bill Type</th><th>Amount</th><th>Due Date</th><th>Status</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr data-type="maintenance" data-status="pending"><td><strong>A-101</strong></td><td>Priya Sharma</td><td>Maintenance</td><td>₹3,200</td><td>15 Apr</td><td><span class="badge b-amber">Pending</span></td><td><button class="btn btn-outline btn-sm">View</button></td></tr>
+              <tr data-type="water" data-status="paid"><td><strong>A-102</strong></td><td>Rohan Mehta</td><td>Water</td><td>₹780</td><td>15 Apr</td><td><span class="badge b-green">Paid</span></td><td><button class="btn btn-outline btn-sm">Receipt</button></td></tr>
+              <tr data-type="maintenance" data-status="paid"><td><strong>B-201</strong></td><td>Sunita Patel</td><td>Maintenance</td><td>₹3,200</td><td>15 Apr</td><td><span class="badge b-green">Paid</span></td><td><button class="btn btn-outline btn-sm">Receipt</button></td></tr>
+              <tr data-type="gas_pipeline" data-status="overdue"><td><strong>B-205</strong></td><td>Kiran Kumar</td><td>Gas Pipeline</td><td>₹1,200</td><td>10 Apr</td><td><span class="badge b-red">Overdue</span></td><td><button class="btn btn-danger btn-sm">Remind</button></td></tr>
+              <tr data-type="water" data-status="pending"><td><strong>C-308</strong></td><td>Amit Joshi</td><td>Water</td><td>₹850</td><td>20 Apr</td><td><span class="badge b-amber">Pending</span></td><td><button class="btn btn-outline btn-sm">View</button></td></tr>
+              <tr data-type="maintenance" data-status="paid"><td><strong>C-401</strong></td><td>Deepa Nair</td><td>Maintenance</td><td>₹3,200</td><td>15 Apr</td><td><span class="badge b-green">Paid</span></td><td><button class="btn btn-outline btn-sm">Receipt</button></td></tr>
+              <tr data-type="parking" data-status="pending"><td><strong>D-502</strong></td><td>Vikram Singh</td><td>Parking</td><td>₹500</td><td>15 Apr</td><td><span class="badge b-amber">Pending</span></td><td><button class="btn btn-outline btn-sm">View</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- Create Bill Modal -->
+<div class="modal-overlay" id="addBillModal">
+  <div class="modal-box">
+    <div class="modal-title">Create New Bill <button class="close-btn" onclick="closeModal('addBillModal')">✕</button></div>
+    <form id="billForm" onsubmit="return false">
+      <div class="form-row"><label class="form-label">Flat Number *</label><input class="form-input" id="newFlat" placeholder="e.g. A-101" /></div>
+      <div class="form-row"><label class="form-label">Bill Type</label>
+        <select class="form-input" id="newType">
+          <option>Maintenance</option><option>Water</option><option>Gas Pipeline</option><option>Parking</option>
+        </select>
+      </div>
+      <div class="form-grid">
+        <div class="form-row"><label class="form-label">Amount (₹) *</label><input class="form-input" id="newAmount" type="number" placeholder="3200" /></div>
+        <div class="form-row"><label class="form-label">Due Date</label><input class="form-input" id="newDue" type="date" /></div>
+      </div>
+      <div class="form-row"><label class="form-label">Notes (optional)</label><textarea class="form-input" rows="2" placeholder="Any additional info..."></textarea></div>
+      <div style="display:flex;gap:10px;margin-top:4px">
+        <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="submitBill()">Create Bill</button>
+        <button class="btn btn-outline" style="flex:1;justify-content:center" onclick="closeModal('addBillModal')">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="layout.js"></script>
+<script src="script.js"></script>
+<script>injectLayout('bills.html');</script>
+</body>
+</html>

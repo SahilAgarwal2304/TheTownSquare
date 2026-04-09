@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TheTownSquare — Complaints</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+  <main class="main">
+    <div class="page-content">
+
+      <div class="page-header">
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">Complaints</h1>
+            <p class="page-sub">Track and resolve resident issues</p>
+          </div>
+          <button class="btn btn-primary" onclick="openModal('addComplaintModal')">+ New Complaint</button>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-label">Open</div><div class="stat-val red">12</div></div>
+        <div class="stat-card"><div class="stat-label">In Progress</div><div class="stat-val amber">7</div></div>
+        <div class="stat-card"><div class="stat-label">Resolved</div><div class="stat-val green">84</div></div>
+        <div class="stat-card"><div class="stat-label">Avg. Resolution</div><div class="stat-val blue">2.4d</div></div>
+      </div>
+
+      <div class="filters">
+        <select class="filter-select" id="complaintStatusFilter" onchange="filterComplaints()">
+          <option value="all">All Status</option>
+          <option value="open">Open</option>
+          <option value="in_progress">In Progress</option>
+          <option value="resolved">Resolved</option>
+        </select>
+        <select class="filter-select" id="complaintPriorityFilter" onchange="filterComplaints()">
+          <option value="all">All Priority</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </div>
+
+      <div class="complaint-list" id="complaintList">
+
+        <div class="complaint-card" data-status="open" data-priority="high">
+          <div class="priority-dot p-high"></div>
+          <div class="complaint-body">
+            <div class="complaint-title">Lift not working — Block B</div>
+            <div class="complaint-desc">The elevator in Block B has been out of service since Monday. Residents on upper floors are severely inconvenienced.</div>
+            <div class="complaint-meta">
+              <span class="badge b-red">High</span>
+              <span class="badge b-amber">Open</span>
+              <span style="font-size:11px;color:var(--text2)">Flat B-504 · 2 hrs ago</span>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-sm">Assign</button>
+        </div>
+
+        <div class="complaint-card" data-status="in_progress" data-priority="medium">
+          <div class="priority-dot p-medium"></div>
+          <div class="complaint-body">
+            <div class="complaint-title">Water leakage in corridor — A wing</div>
+            <div class="complaint-desc">There is a water pipe leakage near Flat A-203 causing wet floors and a slip hazard.</div>
+            <div class="complaint-meta">
+              <span class="badge b-amber">Medium</span>
+              <span class="badge b-blue">In Progress</span>
+              <span style="font-size:11px;color:var(--text2)">Flat A-204 · 5 hrs ago</span>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-sm">Update</button>
+        </div>
+
+        <div class="complaint-card" data-status="resolved" data-priority="low">
+          <div class="priority-dot p-low"></div>
+          <div class="complaint-body">
+            <div class="complaint-title">Garden area needs maintenance</div>
+            <div class="complaint-desc">The common garden area has overgrown grass and needs trimming. Some benches are also damaged.</div>
+            <div class="complaint-meta">
+              <span class="badge b-gray">Low</span>
+              <span class="badge b-green">Resolved</span>
+              <span style="font-size:11px;color:var(--text2)">Flat C-101 · 2 days ago</span>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-sm">View</button>
+        </div>
+
+        <div class="complaint-card" data-status="open" data-priority="high">
+          <div class="priority-dot p-high"></div>
+          <div class="complaint-body">
+            <div class="complaint-title">Security guard misbehaviour</div>
+            <div class="complaint-desc">Guard at Gate 2 was rude to a resident's guest. Requesting immediate action and investigation.</div>
+            <div class="complaint-meta">
+              <span class="badge b-red">High</span>
+              <span class="badge b-amber">Open</span>
+              <span style="font-size:11px;color:var(--text2)">Flat D-302 · Yesterday</span>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-sm">Assign</button>
+        </div>
+
+        <div class="complaint-card" data-status="in_progress" data-priority="medium">
+          <div class="priority-dot p-medium"></div>
+          <div class="complaint-body">
+            <div class="complaint-title">Street lights not working — Parking area</div>
+            <div class="complaint-desc">Three street lights in the basement parking are not functioning since last week. Safety concern at night.</div>
+            <div class="complaint-meta">
+              <span class="badge b-amber">Medium</span>
+              <span class="badge b-blue">In Progress</span>
+              <span style="font-size:11px;color:var(--text2)">Flat E-201 · 3 days ago</span>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-sm">Update</button>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Add Complaint Modal -->
+<div class="modal-overlay" id="addComplaintModal">
+  <div class="modal-box">
+    <div class="modal-title">Raise Complaint <button class="close-btn" onclick="closeModal('addComplaintModal')">✕</button></div>
+    <form id="complaintForm" onsubmit="return false">
+      <div class="form-row"><label class="form-label">Complaint Title *</label><input class="form-input" id="newComplaintTitle" placeholder="Brief title of the issue" /></div>
+      <div class="form-row"><label class="form-label">Description</label><textarea class="form-input" id="newComplaintDesc" rows="3" placeholder="Describe the issue in detail..."></textarea></div>
+      <div class="form-grid">
+        <div class="form-row"><label class="form-label">Priority</label>
+          <select class="form-input" id="newComplaintPriority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="form-row"><label class="form-label">Your Flat</label><input class="form-input" id="newComplaintFlat" placeholder="e.g. A-101" /></div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:4px">
+        <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="submitComplaint()">Submit Complaint</button>
+        <button class="btn btn-outline" style="flex:1;justify-content:center" onclick="closeModal('addComplaintModal')">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="layout.js"></script>
+<script src="script.js"></script>
+<script>injectLayout('complaints.html');</script>
+</body>
+</html>

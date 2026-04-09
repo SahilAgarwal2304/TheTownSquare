@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TheTownSquare — Visitors</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+  <main class="main">
+    <div class="page-content">
+
+      <div class="page-header">
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">Visitor Management</h1>
+            <p class="page-sub">Log and approve visitor entry/exit</p>
+          </div>
+          <button class="btn btn-primary" onclick="openModal('addVisitorModal')">+ Add Visitor</button>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-label">Today's Visitors</div><div class="stat-val blue">23</div></div>
+        <div class="stat-card"><div class="stat-label">Currently Inside</div><div class="stat-val green">7</div></div>
+        <div class="stat-card"><div class="stat-label">Pending Approval</div><div class="stat-val amber">4</div></div>
+        <div class="stat-card"><div class="stat-label">Deliveries Today</div><div class="stat-val">11</div></div>
+      </div>
+
+      <div class="table-wrap">
+        <div class="table-head">
+          <span class="table-title">Today's Entry Log</span>
+          <select class="filter-select" id="visitorTypeFilter" onchange="filterVisitors()">
+            <option value="all">All Types</option>
+            <option value="guest">Guest</option>
+            <option value="delivery">Delivery</option>
+            <option value="service">Service</option>
+          </select>
+        </div>
+        <div class="table-scroll">
+          <table id="visitorsTable">
+            <thead>
+              <tr><th>Visitor Name</th><th>Flat</th><th>Type</th><th>Entry Time</th><th class="hide-mobile">Exit Time</th><th>Status</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr data-type="guest">
+                <td>Ramesh Kumar</td><td>A-201</td><td><span class="vt-guest">Guest</span></td>
+                <td>09:15 AM</td><td class="hide-mobile">11:30 AM</td>
+                <td><span class="badge b-gray">Exited</span></td>
+                <td><button class="btn btn-outline btn-sm">Log</button></td>
+              </tr>
+              <tr data-type="delivery">
+                <td>Swiggy Delivery</td><td>B-304</td><td><span class="vt-delivery">Delivery</span></td>
+                <td>11:45 AM</td><td class="hide-mobile">11:48 AM</td>
+                <td><span class="badge b-gray">Exited</span></td>
+                <td><button class="btn btn-outline btn-sm">Log</button></td>
+              </tr>
+              <tr data-type="service">
+                <td>Santosh Plumber</td><td>C-102</td><td><span class="vt-service">Service</span></td>
+                <td>02:00 PM</td><td class="hide-mobile">—</td>
+                <td><span class="badge b-green">Inside</span></td>
+                <td><button class="btn btn-primary btn-sm" onclick="exitVisitor(this)">Exit</button></td>
+              </tr>
+              <tr data-type="guest">
+                <td>Priya's Sister</td><td>A-101</td><td><span class="vt-guest">Guest</span></td>
+                <td>—</td><td class="hide-mobile">—</td>
+                <td><span class="badge b-amber">Pending</span></td>
+                <td><button class="btn btn-primary btn-sm" onclick="approveVisitor(this)">Approve</button></td>
+              </tr>
+              <tr data-type="delivery">
+                <td>Amazon Delivery</td><td>D-501</td><td><span class="vt-delivery">Delivery</span></td>
+                <td>03:30 PM</td><td class="hide-mobile">03:32 PM</td>
+                <td><span class="badge b-gray">Exited</span></td>
+                <td><button class="btn btn-outline btn-sm">Log</button></td>
+              </tr>
+              <tr data-type="guest">
+                <td>Rahul Verma</td><td>B-205</td><td><span class="vt-guest">Guest</span></td>
+                <td>—</td><td class="hide-mobile">—</td>
+                <td><span class="badge b-amber">Pending</span></td>
+                <td><button class="btn btn-primary btn-sm" onclick="approveVisitor(this)">Approve</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- Add Visitor Modal -->
+<div class="modal-overlay" id="addVisitorModal">
+  <div class="modal-box">
+    <div class="modal-title">Add Expected Visitor <button class="close-btn" onclick="closeModal('addVisitorModal')">✕</button></div>
+    <form id="visitorForm" onsubmit="return false">
+      <div class="form-row"><label class="form-label">Visitor Name *</label><input class="form-input" id="newVisitorName" placeholder="Full name" /></div>
+      <div class="form-grid">
+        <div class="form-row"><label class="form-label">Visit Type</label>
+          <select class="form-input" id="newVisitorType">
+            <option value="guest">Guest</option>
+            <option value="delivery">Delivery</option>
+            <option value="service">Service</option>
+          </select>
+        </div>
+        <div class="form-row"><label class="form-label">Flat Number *</label><input class="form-input" id="newVisitorFlat" placeholder="e.g. A-101" /></div>
+      </div>
+      <div class="form-row"><label class="form-label">Purpose</label><input class="form-input" id="newVisitorPurpose" placeholder="Reason for visit" /></div>
+      <div class="form-row"><label class="form-label">Expected Date</label><input class="form-input" type="date" /></div>
+      <div style="display:flex;gap:10px;margin-top:4px">
+        <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="submitVisitor()">Add Visitor</button>
+        <button class="btn btn-outline" style="flex:1;justify-content:center" onclick="closeModal('addVisitorModal')">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="layout.js"></script>
+<script src="script.js"></script>
+<script>injectLayout('visitors.html');</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TheTownSquare — Notices</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+  <main class="main">
+    <div class="page-content">
+
+      <div class="page-header">
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">Notices & Announcements</h1>
+            <p class="page-sub">Society-wide communications</p>
+          </div>
+          <button class="btn btn-primary" onclick="openModal('addNoticeModal')">+ Post Notice</button>
+        </div>
+      </div>
+
+      <div class="notice-list" id="noticeList">
+
+        <div class="notice-card" style="border-left-color:var(--accent)">
+          <div class="notice-title">Annual General Meeting — 20th April 2025</div>
+          <div class="notice-body">All residents are hereby invited to attend the Annual General Meeting of Sunrise Heights Co-operative Housing Society. The AGM will be held on 20th April at 6:00 PM in the Community Hall, Ground Floor.</div>
+          <div class="notice-meta">
+            <span>📌 By Admin · Arjun Rao</span>
+            <span>Apr 9, 2025 · 9:00 AM</span>
+            <span class="badge b-blue">All Residents</span>
+          </div>
+        </div>
+
+        <div class="notice-card" style="border-left-color:var(--warn)">
+          <div class="notice-title">Water Supply Interruption — 11th April</div>
+          <div class="notice-body">Due to scheduled maintenance of the main water tank, water supply will be interrupted on 11th April from 10:00 AM to 2:00 PM. Residents are requested to store water in advance.</div>
+          <div class="notice-meta">
+            <span>📌 By Committee · Rajesh Verma</span>
+            <span>Apr 8, 2025 · 3:30 PM</span>
+            <span class="badge b-amber">All Wings</span>
+          </div>
+        </div>
+
+        <div class="notice-card" style="border-left-color:var(--success)">
+          <div class="notice-title">New Garbage Collection Timings</div>
+          <div class="notice-body">Effective from 12th April, garbage collection will happen daily at 8:00 AM and 6:00 PM. Please ensure garbage bags are placed outside your flat door by 7:45 AM.</div>
+          <div class="notice-meta">
+            <span>📌 By Admin · Arjun Rao</span>
+            <span>Apr 6, 2025 · 11:00 AM</span>
+            <span class="badge b-green">All Residents</span>
+          </div>
+        </div>
+
+        <div class="notice-card" style="border-left-color:var(--accent)">
+          <div class="notice-title">Diwali Celebration — Residents Invited</div>
+          <div class="notice-body">The Cultural Committee is organising a Diwali celebration in the common garden area. Games, food stalls, and live performances are planned. All families are warmly welcome!</div>
+          <div class="notice-meta">
+            <span>📌 By Cultural Committee</span>
+            <span>Apr 3, 2025 · 5:00 PM</span>
+            <span class="badge b-blue">All Residents</span>
+          </div>
+        </div>
+
+        <div class="notice-card" style="border-left-color:var(--danger)">
+          <div class="notice-title">Parking Rule Reminder — No Double Parking</div>
+          <div class="notice-body">It has been observed that some residents are double-parking in the visitor zone. Strict action including wheel clamping will be taken against violators from 15th April onwards.</div>
+          <div class="notice-meta">
+            <span>📌 By Admin · Arjun Rao</span>
+            <span>Apr 1, 2025 · 10:00 AM</span>
+            <span class="badge b-red">Urgent</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Post Notice Modal -->
+<div class="modal-overlay" id="addNoticeModal">
+  <div class="modal-box">
+    <div class="modal-title">Post Notice <button class="close-btn" onclick="closeModal('addNoticeModal')">✕</button></div>
+    <form id="noticeForm" onsubmit="return false">
+      <div class="form-row"><label class="form-label">Notice Title *</label><input class="form-input" id="newNoticeTitle" placeholder="Title of announcement" /></div>
+      <div class="form-row"><label class="form-label">Content *</label><textarea class="form-input" id="newNoticeBody" rows="4" placeholder="Write the announcement details..."></textarea></div>
+      <div class="form-grid">
+        <div class="form-row"><label class="form-label">Visibility</label>
+          <select class="form-input" id="newNoticeAudience">
+            <option>All Residents</option>
+            <option>Block A Only</option>
+            <option>Block B Only</option>
+            <option>Committee Only</option>
+          </select>
+        </div>
+        <div class="form-row"><label class="form-label">Priority</label>
+          <select class="form-input" id="newNoticePriority">
+            <option value="normal">Normal</option>
+            <option value="important">Important</option>
+            <option value="urgent">Urgent</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:4px">
+        <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="submitNotice()">Post Notice</button>
+        <button class="btn btn-outline" style="flex:1;justify-content:center" onclick="closeModal('addNoticeModal')">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="layout.js"></script>
+<script src="script.js"></script>
+<script>injectLayout('notices.html');</script>
+</body>
+</html>
