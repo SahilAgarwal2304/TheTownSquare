@@ -25,8 +25,8 @@ function injectLayout(activePage) {
   <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeSidebar()"></div>
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-      <div class="logo-icon">SO</div>
-      <span class="logo-text">SocietyOS</span>
+      <div class="logo-icon">TS</div>
+      <span class="logo-text">TheTownSquare</span>
     </div>
     <nav class="sidebar-nav">
       <span class="nav-label">Main</span>
